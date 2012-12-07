@@ -48,11 +48,11 @@ public class Uploader {
 	}
 	
 	private String getBucketName() {
-		return prefs.getString("settings_bucketname", null);
+		return prefs.getString("settings_bucketname", "");
 	}
 	
 	private String getObjectPrefix() {
-		return prefs.getString("settings_objectprefix", null);
+		return prefs.getString("settings_objectprefix", "");
 	}
 
 	public boolean checkSettings() {
@@ -131,7 +131,7 @@ public class Uploader {
 			ParcelFileDescriptor fd = null;
 			try {
 				AmazonS3Client client = createClient();
-				fileName = getObjectPrefix() + (System.currentTimeMillis() / 1000) + ".jpg";
+				fileName = getObjectPrefix() + (System.currentTimeMillis()) + ".jpg";
 								
 				ContentResolver resolver = ctx.getContentResolver();
 				fd = resolver.openFileDescriptor(u, "r");
