@@ -1,0 +1,27 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="Credentials" >
+        <EditTextPreference
+            android:key="settings_accesskey"
+            android:title="Access Key" />
+        <EditTextPreference
+            android:key="settings_secretkey"
+            android:title="Secret Key" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Bucket" >
+        <ListPreference
+            android:entries="@array/regions_names"
+            android:entryValues="@array/regions_values"
+            android:key="settings_region"
+            android:title="Region" />
+        <EditTextPreference
+            android:key="settings_bucketname"
+            android:title="Bucket Name" />
+        <EditTextPreference
+            android:key="settings_objectprefix"
+            android:title="Object Prefix" />
+        <EditTextPreference
+            android:key="settings_cloudfront"
+            android:title="CloudFront/Website Domain" />
+    </PreferenceCategory>
+</PreferenceScreen>

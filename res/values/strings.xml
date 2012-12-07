@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">S3 Grabber</string>
+    <string name="title_section3">Settings</string>
+    <string name="title_section1">Upload</string>
+    <string name="select_a_file">Select an image...</string>
+    <string name="uploading">Uploading...</string>
+    <string name="menu_settings">Settings</string>
+    <string-array name="regions_names">
+        <item>US Standard</item>
+        <item>US West (Oregon)</item>
+        <item>US West (Northern California)</item>
+        <item>EU (Ireland)</item>
+        <item>Asia Pacific (Singapore)</item>
+        <item>Asia Pacific (Tokyo)</item>
+        <item>Asia Pacific (Sydney)</item>
+        <item>South America (Sao Paulo)</item>
+    </string-array>
+    <string-array name="regions_values">
+        <item>s3.amazonaws.com</item>
+        <item>s3-us-west-2.amazonaws.com</item>
+        <item>s3-us-west-1.amazonaws.com</item>
+        <item>s3-eu-west-1.amazonaws.com</item>
+        <item>s3-ap-southeast-1.amazonaws.com</item>
+        <item>s3-ap-northeast-1.amazonaws.com</item>
+        <item>s3-ap-southeast-2.amazonaws.com</item>
+        <item>s3-sa-east-1.amazonaws.com</item>
+    </string-array>
+    
+</resources>
