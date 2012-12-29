@@ -10,11 +10,11 @@ import android.os.AsyncTask;
 import android.os.ParcelFileDescriptor;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
-import android.text.method.LinkMovementMethod;
-import android.text.util.Linkify;
+import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -96,12 +96,13 @@ public class Uploader {
 	public void onUploadComplete(String fileName) {
 		String uri = makeDestinationUri(fileName);
 		
-		TextView t = ((TextView)((MainActivity)ctx).findViewById(R.id.textView1));
-		t.setText(uri);
-		t.setAutoLinkMask(Linkify.ALL);
-		t.setMovementMethod(LinkMovementMethod.getInstance());
+		MainActivity v = (MainActivity)ctx;
 		
-		((MainActivity)ctx).updateShareIntent(uri);
+		EditText et = (EditText)v.findViewById(R.id.finalUrl);
+		et.setText(uri);	
+		
+		v.updateShareIntent(uri);	
+		v.findViewById(R.id.viewUploadResult).setVisibility(View.VISIBLE);			
 	}
 	
 	private String makeDestinationUri(String fileName) {
@@ -172,6 +173,7 @@ public class Uploader {
 				btn.getAnimation().setRepeatCount(0);
 			}
 			((TextView)((MainActivity)ctx).findViewById(R.id.textView1)).setText(R.string.select_a_file);
+						
 			if(res == null || res.getETag() == null) {
 				Toast t = Toast.makeText(ctx, "Failed to upload :(", Toast.LENGTH_SHORT);
 				t.show();

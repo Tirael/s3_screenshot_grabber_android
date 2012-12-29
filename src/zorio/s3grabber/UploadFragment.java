@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.ClipData;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -13,10 +15,13 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.content.ClipboardManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class UploadFragment extends Fragment {
 	
@@ -43,11 +48,50 @@ public class UploadFragment extends Fragment {
 			}
 		});
 		
+		EditText t = (EditText) v.findViewById(R.id.finalUrl);
+		t.setKeyListener(null);
+		
+		v.findViewById(R.id.viewUploadResult).setVisibility(View.INVISIBLE);
+		
+		v.findViewById(R.id.imageButtonCopyUrl).setOnClickListener(new OnClickListener() {	
+			@Override
+			public void onClick(View v) {
+				copyUri();
+			}
+		});
+		
+		v.findViewById(R.id.imageButtonOpenUrl).setOnClickListener(new OnClickListener() {			
+			@Override
+			public void onClick(View v) {
+				openUri();		
+			}
+		});
+		
 		return v;
 	}
+	
+	private void copyUri() {
+		View v = getView();
+		Context ctx = v.getContext();	
+		EditText t = (EditText) v.findViewById(R.id.finalUrl);
+		String currentText = t.getText().toString();
+		
+		if(currentText != null && currentText.length() > 0) {
+			ClipboardManager clipboard = (ClipboardManager) ctx.getSystemService(Context.CLIPBOARD_SERVICE);
+			ClipData clip = ClipData.newUri(ctx.getContentResolver(), "URI", Uri.parse(currentText));
+			clipboard.setPrimaryClip(clip);									
+			Toast.makeText(v.getContext(), "Copied to clipboard", Toast.LENGTH_SHORT).show();
+		}
+	}
+	
+	private void openUri() {
+		View v = getView();
+		EditText t = (EditText) v.findViewById(R.id.finalUrl);
+		Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(t.getText().toString()));
+		startActivity(browserIntent);		
+	}
 
-	private void beginSelectPicture() {
-				
+	private void beginSelectPicture() {			
 		ArrayList<Intent> intents = new ArrayList<Intent>();
 
 		PackageManager pm = getActivity().getPackageManager();

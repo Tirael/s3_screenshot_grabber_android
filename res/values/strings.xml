@@ -4,7 +4,7 @@
     <string name="app_name">S3 Grabber</string>
     <string name="title_section3">Settings</string>
     <string name="title_section1">Upload</string>
-    <string name="select_a_file">Select an image...</string>
+    <string name="select_a_file">Select an Image</string>
     <string name="uploading">Uploading...</string>
     <string name="menu_settings">Settings</string>
     <string-array name="regions_names">

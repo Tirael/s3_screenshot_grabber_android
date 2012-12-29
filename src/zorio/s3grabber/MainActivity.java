@@ -52,6 +52,7 @@ public class MainActivity extends FragmentActivity implements
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
+		
 	}
 
 	@Override
@@ -87,6 +88,7 @@ public class MainActivity extends FragmentActivity implements
 			super(fm);
 			uploadFragment = new UploadFragment();
 			settingsFragment = new PreferenceListFragment(R.xml.preferences);
+			
 		}
 
 		@Override
